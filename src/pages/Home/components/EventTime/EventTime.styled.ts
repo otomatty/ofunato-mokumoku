@@ -27,6 +27,10 @@ export const EventList = styled('div')`
     justify-content: space-between;
     gap: 0.5rem;
     font-size: 1rem;
+    height: 50%;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 1rem;
 
     @media (min-width: 768px) {
       font-size: 1.2rem;
@@ -46,7 +50,7 @@ export const DayWrapper = styled('div')`
 export const DayStyled = styled('div')`
   padding: 1rem 0.2rem;
   box-sizing: border-box;
-  height: 80%;
+  height: 70%;
   width: 100%;
   background-color: var(--color-background-default);
   border-radius: 8px;

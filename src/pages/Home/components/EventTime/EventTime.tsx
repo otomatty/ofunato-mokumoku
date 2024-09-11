@@ -40,7 +40,10 @@ const EventTime: Component = () => {
           <SectionTitle title="毎週開催しています" />
         </div>
         <EventList style={{ height: `calc(100% - ${titleHeight()}px)` }}>
-          <p>火曜日と土曜日の週2回開催</p>
+          <p>
+            火曜日と土曜日の週2回開催なので <br />
+            自分のペースで参加できます
+          </p>
           <div class="days-container">
             {daysOfWeek.map((day) => (
               <DayWrapper>

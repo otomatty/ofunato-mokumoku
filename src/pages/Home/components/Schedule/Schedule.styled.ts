@@ -45,11 +45,13 @@ export const EventCard = styled('div')`
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  height: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
 
   img {
     width: 100%;
-    height: 150px;
+    height: 60%;
     object-fit: cover;
   }
 
