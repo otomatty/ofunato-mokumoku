@@ -1,0 +1,108 @@
+:root {
+  --color-primary-main: #007bff;
+  --color-primary-light: #6cb2eb;
+  --color-primary-dark: #2779bd;
+  --color-primary-contrast-text: #ffffff;
+
+  --color-secondary-main: #ffed4a;
+  --color-secondary-light: #fff382;
+  --color-secondary-dark: #e3ac00;
+  --color-secondary-contrast-text: #2c3e50;
+
+  --color-background-default: #f0f0f0;
+  --color-background-paper: #ffffff;
+
+  --color-text-primary: #666;
+  --color-text-accent: #333;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  --border-radius-sm: 0.125rem;
+  --border-radius-md: 0.25rem;
+  --border-radius-lg: 0.5rem;
+
+  /* ベースのフォントサイズ */
+  --base-font-size: 1rem;
+
+  /* h1のフォントサイズ */
+  --h1-font-size: clamp(2rem, 4vw + 1rem, 4rem);
+
+  /* h2のフォントサイズ */
+  --h2-font-size: clamp(1.75rem, 3vw + 0.75rem, 3rem);
+
+  /* h3のフォントサイズ */
+  --h3-font-size: clamp(1.5rem, 2vw + 0.5rem, 2.5rem);
+
+  /* pタグのフォントサイズ */
+  --p-font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.1rem);
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/fonts/NotoSansJP-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/fonts/NotoSansJP-Bold.ttf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* 追加: 全ての要素に対してbox-sizing: border-boxを指定 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background-default);
+  color: var(--color-text-primary);
+  font-size: var(--base-font-size);
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+}
+
+h2 {
+  font-size: var(--h2-font-size);
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+}
+
+p {
+  font-size: var(--p-font-size);
+}
+
+img {
+  max-width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: 'Noto Color Emoji';
+  src: url('/fonts/NotoColorEmoji-Regular.ttf') format('truetype');
+}
+
+.emoji {
+  font-family: 'Noto Color Emoji', sans-serif;
+}
