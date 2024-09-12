@@ -1,9 +1,9 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const FullScreenNavWrapper = styled('div')<{ isOpen: boolean }>`
+export const FullScreenNavWrapper = styled("div")<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
-  right: ${(props) => (props.isOpen ? '0' : '-100%')};
+  right: ${(props) => (props.isOpen ? "0" : "-100%")};
   width: 100%;
   height: 100%;
   background-color: #fff;
@@ -11,7 +11,7 @@ export const FullScreenNavWrapper = styled('div')<{ isOpen: boolean }>`
   z-index: 1000;
 `;
 
-export const NavContent = styled('nav')`
+export const NavContent = styled("nav")`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,18 +31,18 @@ export const NavContent = styled('nav')`
   }
 `;
 
-export const CloseButton = styled('button')`
+export const CloseButton = styled("button")`
   position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 30px;
-  color: #333;
+  font-size: 3rem;
+  color: #888;
   background: none;
   border: none;
   cursor: pointer;
 `;
 
-export const ButtonContainer = styled('div')`
+export const ButtonContainer = styled("div")`
   display: flex;
   flex-direction: column;
   gap: 10px;

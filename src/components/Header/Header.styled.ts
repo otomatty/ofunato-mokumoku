@@ -103,9 +103,9 @@ export const HamburgerButton = styled("button")`
 
   span {
     display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #333;
+    width: 2rem;
+    height: 4px;
+    background-color: #888;
     margin: 5px 0;
     transition: 0.4s;
   }
