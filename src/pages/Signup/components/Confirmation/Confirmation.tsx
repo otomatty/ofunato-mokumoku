@@ -36,6 +36,15 @@ const formatDate = (dateString: string): string => {
   return `${year}/${month}/${day}（${dayOfWeek}）${hours}:${minutes}~${endHours}:${endMinutes}`;
 };
 
+// 生年月日をフォーマットする関数
+const formatBirthdate = (dateString: string): string => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}年${month}月${day}日`;
+};
+
 const Confirmation: Component<ConfirmationProps> = ({
   formData,
   onConfirm,
@@ -70,11 +79,19 @@ const Confirmation: Component<ConfirmationProps> = ({
         </ConfirmationItem>
         <ConfirmationItem>
           <ItemLabel>性別:</ItemLabel>
-          <ItemValue>{formData.gender || "回答しない"}</ItemValue>
+          <ItemValue>
+            {formData.gender === "custom"
+              ? formData.customGender || "未入力"
+              : formData.gender || "回答しない"}
+          </ItemValue>
         </ConfirmationItem>
         <ConfirmationItem>
           <ItemLabel>生年月日:</ItemLabel>
-          <ItemValue>{formData.birthdate || "未入力"}</ItemValue>
+          <ItemValue>
+            {formData.birthdate
+              ? formatBirthdate(formData.birthdate)
+              : "未入力"}
+          </ItemValue>
         </ConfirmationItem>
         <ConfirmationItem>
           <ItemLabel>参加希望日:</ItemLabel>
@@ -83,16 +100,16 @@ const Confirmation: Component<ConfirmationProps> = ({
           </ItemValue>
         </ConfirmationItem>
         <ConfirmationItem>
-          <ItemLabel>目的:</ItemLabel>
+          <ItemLabel>参加する目的:</ItemLabel>
           <ItemValue>{formData.purpose}</ItemValue>
         </ConfirmationItem>
         <ConfirmationItem>
-          <ItemLabel>その他の目的:</ItemLabel>
-          <ItemValue>{formData.otherPurpose || "なし"}</ItemValue>
+          <ItemLabel>興味があるテーマ:</ItemLabel>
+          <ItemValue>{formData.theme || "未選択"}</ItemValue>
         </ConfirmationItem>
         <ConfirmationItem>
-          <ItemLabel>テーマ:</ItemLabel>
-          <ItemValue>{formData.theme || "未選択"}</ItemValue>
+          <ItemLabel>その他の取り組みたいテーマ:</ItemLabel>
+          <ItemValue>{formData.otherPurpose || "なし"}</ItemValue>
         </ConfirmationItem>
       </ConfirmationList>
       <ButtonGroup>

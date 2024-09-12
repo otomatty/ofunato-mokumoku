@@ -29,6 +29,7 @@ const Step1 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
       <Input
         type="text"
         id="name"
+        placeholder="お名前を入力してください"
         name="name"
         value={name()}
         onInput={handleChange}
