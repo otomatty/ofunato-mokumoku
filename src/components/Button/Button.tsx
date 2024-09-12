@@ -2,7 +2,7 @@ import { Component, JSX } from 'solid-js';
 import { StyledButton } from './Button.styled';
 
 interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'outline';
   children: JSX.Element;
 }
 

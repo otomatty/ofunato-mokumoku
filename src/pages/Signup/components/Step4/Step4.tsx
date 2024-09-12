@@ -1,6 +1,7 @@
-import { createSignal, createEffect } from "solid-js";
-import { FormData } from "../../../../types/formTypes";
-import { FormGroup, Label, Select, Input } from "./Step4.styled";
+import { createSignal, createEffect } from 'solid-js';
+import { FormData } from '../../../../types/formTypes';
+import { FormGroup, Label, Select, Input } from './Step4.styled';
+import { OptionalTag } from '../../Signup.styled';
 
 interface StepProps {
   formData: FormData;
@@ -11,7 +12,7 @@ interface StepProps {
 const Step4 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   const [gender, setGender] = createSignal(formData.gender);
   const [customGender, setCustomGender] = createSignal(
-    formData.customGender || ""
+    formData.customGender || ''
   );
 
   const handleGenderChange = (e: Event) => {
@@ -33,7 +34,7 @@ const Step4 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   return (
     <FormGroup>
       <Label for="gender">
-        性別 <span class="optional">任意</span>
+        性別<OptionalTag>任意</OptionalTag>
       </Label>
       <Select
         id="gender"
@@ -46,7 +47,7 @@ const Step4 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
         <option value="female">女性</option>
         <option value="custom">カスタム</option>
       </Select>
-      {gender() === "custom" && (
+      {gender() === 'custom' && (
         <Input
           type="text"
           id="customGender"

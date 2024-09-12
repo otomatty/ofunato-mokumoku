@@ -1,12 +1,13 @@
-import { createSignal, createEffect } from "solid-js";
-import { FormData } from "../../../../types/formTypes";
+import { createSignal, createEffect } from 'solid-js';
+import { FormData } from '../../../../types/formTypes';
 import {
   FormGroup,
   Label,
   Card,
   CardsContainer,
   TextArea,
-} from "./Step7.styled"; // 新しいスタイルファイルをインポート
+} from './Step7.styled';
+import { RequiredTag } from '../../Signup.styled';
 
 interface StepProps {
   formData: FormData;
@@ -30,31 +31,31 @@ const Step7 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   };
 
   createEffect(() => {
-    setIsStepValid(purpose() !== ""); // 必須項目に変更
+    setIsStepValid(purpose() !== ''); // 必須項目に変更
   });
 
   return (
     <FormGroup>
       <Label for="purpose">
-        参加目的 <span class="required">必須</span>
+        参加目的<RequiredTag>必須</RequiredTag>
       </Label>
       <CardsContainer>
         {[
-          "集中して学習したい",
-          "他の参加者と交流したい",
-          "新しいスキルを習得したい",
-          "相談やアドバイスをしたい",
-          "その他",
+          '集中して学習したい',
+          '他の参加者と交流したい',
+          '新しいスキルを習得したい',
+          '相談やアドバイスをしたい',
+          'その他',
         ].map((item) => (
           <Card
-            class={purpose() === item ? "selected" : ""}
+            class={purpose() === item ? 'selected' : ''}
             onClick={() => handlePurposeChange(item)}
           >
             {item}
           </Card>
         ))}
       </CardsContainer>
-      {purpose() === "その他" && (
+      {purpose() === 'その他' && (
         <TextArea
           id="otherPurpose"
           name="otherPurpose"

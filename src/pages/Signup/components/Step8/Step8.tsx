@@ -1,14 +1,19 @@
-import { createSignal, createEffect } from 'solid-js';
+import { createSignal, createEffect, For } from 'solid-js';
 import { FormData } from '../../../../types/formTypes';
 import {
   FormGroup,
   Label,
   Card,
   CardsContainer,
-  CategoryLabel,
   TextArea,
-} from './Step8.styled'; // 新しいスタイルファイルをインポート
-import { themeData } from '../../../../data/themeData'; // テーマデータファイルをインポート
+  AccordionHeader,
+  AccordionContent,
+  AccordionInner,
+  IconWrapper,
+} from './Step8.styled';
+import { OptionalTag } from '../../Signup.styled';
+import { themeData } from '../../../../data/themeData';
+import { FaSolidChevronDown } from 'solid-icons/fa';
 
 interface StepProps {
   formData: FormData;
@@ -18,9 +23,10 @@ interface StepProps {
 
 const Step8 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   const [selectedThemes, setSelectedThemes] = createSignal<string[]>(
-    formData.theme.split(',')
+    formData.theme.split(',').filter(Boolean)
   );
   const [otherTheme, setOtherTheme] = createSignal(formData.otherPurpose || '');
+  const [openCategories, setOpenCategories] = createSignal<string[]>([]);
 
   const handleThemeChange = (value: string) => {
     const currentThemes = selectedThemes();
@@ -29,6 +35,16 @@ const Step8 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
     } else {
       setSelectedThemes([...currentThemes, value]);
     }
+    updateFormData();
+  };
+
+  const handleOtherThemeChange = (e: Event) => {
+    const target = e.target as HTMLTextAreaElement;
+    setOtherTheme(target.value);
+    updateFormData();
+  };
+
+  const updateFormData = () => {
     setFormData({
       ...formData,
       theme: selectedThemes().join(','),
@@ -36,42 +52,72 @@ const Step8 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
     });
   };
 
-  const handleOtherThemeChange = (e: Event) => {
-    const target = e.target as HTMLTextAreaElement;
-    setOtherTheme(target.value);
-    setFormData({ ...formData, otherPurpose: target.value });
+  const toggleCategory = (category: string) => {
+    setOpenCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
   };
 
   createEffect(() => {
-    setIsStepValid(selectedThemes().length > 0 || otherTheme().trim() !== ''); // 必須項目に変更
+    setIsStepValid(true); // 常に有効にする（任意選択のため）
   });
 
   return (
     <FormGroup>
       <Label for="theme">
-        興味があるテーマを選んでください <span class="required">必須</span>
+        興味があるテーマを選んでください<OptionalTag>任意</OptionalTag>
       </Label>
-      {themeData.map((category) => (
-        <>
-          <CategoryLabel>{category.category}</CategoryLabel>
-          <CardsContainer>
-            {category.themes.map((item) => (
-              <Card
-                class={selectedThemes().includes(item.title) ? 'selected' : ''}
-                onClick={() => handleThemeChange(item.title)}
+      <For each={themeData}>
+        {(category) => (
+          <>
+            <AccordionHeader onClick={() => toggleCategory(category.category)}>
+              {category.category}
+              <IconWrapper
+                style={{
+                  transform: openCategories().includes(category.category)
+                    ? 'rotate(180deg)'
+                    : 'rotate(0)',
+                }}
               >
-                {item.emoji} {item.title}
-              </Card>
-            ))}
-          </CardsContainer>
-        </>
-      ))}
-      <Label for="otherTheme">その他のテーマ</Label>
+                <FaSolidChevronDown />
+              </IconWrapper>
+            </AccordionHeader>
+            <AccordionContent
+              open={openCategories().includes(category.category)}
+            >
+              <AccordionInner>
+                <CardsContainer>
+                  <For each={category.themes}>
+                    {(item) => (
+                      <Card
+                        class={
+                          selectedThemes().includes(item.title)
+                            ? 'selected'
+                            : ''
+                        }
+                        onClick={() => handleThemeChange(item.title)}
+                      >
+                        {item.emoji} {item.title}
+                      </Card>
+                    )}
+                  </For>
+                </CardsContainer>
+              </AccordionInner>
+            </AccordionContent>
+          </>
+        )}
+      </For>
+      <Label for="otherTheme">
+        他に取り組みたいテーマがあれば入力してください
+        <OptionalTag>任意</OptionalTag>
+      </Label>
       <TextArea
         id="otherTheme"
         name="otherTheme"
         rows="3"
-        placeholder="その他のテーマを入力してください"
+        placeholder="取り組みたいテーマを入力してください"
         value={otherTheme()}
         onInput={handleOtherThemeChange}
       />

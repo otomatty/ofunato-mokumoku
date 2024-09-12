@@ -1,5 +1,5 @@
-import { createSignal, createEffect, onMount } from "solid-js";
-import { FormData } from "../../../../types/formTypes";
+import { createSignal, createEffect, onMount } from 'solid-js';
+import { FormData } from '../../../../types/formTypes';
 import {
   FormGroup,
   Label,
@@ -15,7 +15,8 @@ import {
   EventTime,
   EventLocation,
   EventYear,
-} from "./Step6.styled";
+} from './Step6.styled';
+import { RequiredTag } from '../../Signup.styled';
 import {
   fetchUpcomingEvents,
   CalendarEvent,
@@ -24,7 +25,7 @@ import {
   formatTimeRange,
   formatDateAndDay,
   getYear,
-} from "../../../../utils/googleCalendar";
+} from '../../../../utils/googleCalendar';
 
 interface StepProps {
   formData: FormData;
@@ -48,13 +49,13 @@ const Step6 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   onMount(async () => {
     const upcomingEvents = await fetchUpcomingEvents();
     setEvents(upcomingEvents || []);
-    console.log("Upcoming events:", upcomingEvents);
+    console.log('Upcoming events:', upcomingEvents);
   });
 
   return (
     <FormGroup>
       <Label>
-        参加希望日 <span class="required">必須</span>
+        参加希望日<RequiredTag>必須</RequiredTag>
       </Label>
       <CardsContainer>
         {events().map((event) => {
@@ -63,7 +64,7 @@ const Step6 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
           return (
             <Card
               onClick={() => handleSelectDate(event.start.dateTime)}
-              class={isSelected ? "selected" : ""}
+              class={isSelected ? 'selected' : ''}
             >
               <EventDateTime>
                 <EventYear>{getYear(event.start.dateTime)}</EventYear>
@@ -76,13 +77,13 @@ const Step6 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
                 </EventTime>
               </EventDateTime>
               <EventImage
-                src={getLocationImage(event.location || "")}
+                src={getLocationImage(event.location || '')}
                 alt={event.summary}
               />
               <EventDetails>
                 <EventTitle>{event.summary}</EventTitle>
                 <EventLocation>
-                  {getLocationName(event.location || "")}
+                  {getLocationName(event.location || '')}
                 </EventLocation>
               </EventDetails>
             </Card>

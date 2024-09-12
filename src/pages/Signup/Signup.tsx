@@ -1,15 +1,16 @@
-import { createSignal, onMount } from "solid-js";
-import Step1 from "./components/Step1/Step1";
-import Step2 from "./components/Step2/Step2";
-import Step3 from "./components/Step3/Step3";
-import Step4 from "./components/Step4/Step4";
-import Step5 from "./components/Step5/Step5";
-import Step6 from "./components/Step6/Step6";
-import Step7 from "./components/Step7/Step7";
-import Step8 from "./components/Step8/Step8";
-import Confirmation from "./Confirmation"; // 新しいコンポーネントをインポート
-import { saveSignupResponse } from "../../firebase/firestore";
-import { FormData } from "../../types/formTypes";
+import { createSignal, onMount } from 'solid-js';
+import Step1 from './components/Step1/Step1';
+import Step2 from './components/Step2/Step2';
+import Step3 from './components/Step3/Step3';
+import Step4 from './components/Step4/Step4';
+import Step5 from './components/Step5/Step5';
+import Step6 from './components/Step6/Step6';
+import Step7 from './components/Step7/Step7';
+import Step8 from './components/Step8/Step8';
+import Confirmation from './Confirmation';
+import Button from '../../components/Button/Button';
+import { saveSignupResponse } from '../../firebase/firestore';
+import { FormData } from '../../types/formTypes';
 import {
   SignupWrapper,
   SignupInner,
@@ -17,29 +18,29 @@ import {
   ProgressBar,
   ProgressStep,
   ButtonGroup,
-  Button,
-} from "./Signup.styled";
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
+  BackLink,
+} from './Signup.styled';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
 
 const Signup = () => {
   const [step, setStep] = createSignal(1);
   const [formData, setFormData] = createSignal<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    gender: "",
-    birthdate: "",
-    date: "",
-    purpose: "",
-    otherPurpose: "",
-    theme: "",
+    name: '',
+    email: '',
+    phone: '',
+    gender: '',
+    birthdate: '',
+    date: '',
+    purpose: '',
+    otherPurpose: '',
+    theme: '',
   });
   const [isStepValid, setIsStepValid] = createSignal(false);
   const [isConfirming, setIsConfirming] = createSignal(false); // 確認画面の状態を管理
 
   // ローカルストレージからフォームデータを読み込む
   onMount(() => {
-    const savedFormData = localStorage.getItem("signupFormData");
+    const savedFormData = localStorage.getItem('signupFormData');
     if (savedFormData) {
       setFormData(JSON.parse(savedFormData));
     }
@@ -48,17 +49,19 @@ const Signup = () => {
   // フォームデータが変更されたときにローカルストレージに保存する
   const handleFormDataChange = (newFormData: FormData) => {
     setFormData(newFormData);
-    localStorage.setItem("signupFormData", JSON.stringify(newFormData));
+    localStorage.setItem('signupFormData', JSON.stringify(newFormData));
   };
 
   const handleNext = () => {
     if (isStepValid()) {
       setStep(step() + 1);
+      setIsStepValid(false); // 次のステップに移動したら、一旦無効状態にリセット
       console.log(`現在のステップ: ${step() + 1}`); // 次のステップを表示
     }
   };
 
-  const handlePrev = () => {
+  const handlePrev = (e: Event) => {
+    e.preventDefault();
     setStep(step() - 1);
     console.log(`現在のステップ: ${step() - 1}`); // 前のステップを表示
   };
@@ -76,17 +79,17 @@ const Signup = () => {
     const age = calculateAge(formData().birthdate);
     try {
       await saveSignupResponse({ ...formData(), age });
-      alert("申し込みが送信されました！");
-      localStorage.removeItem("signupFormData"); // 送信後にローカルストレージをクリア
+      alert('申し込みが送信されました！');
+      localStorage.removeItem('signupFormData'); // 送信後にローカルストレージをクリア
     } catch (error) {
-      alert("申し込みの送信中にエラーが発生しました。");
+      alert('申し込みの送信中にエラーが発生しました。');
     }
   };
 
   const handleConfirmSubmit = () => {
-    const form = document.querySelector("form");
+    const form = document.querySelector('form');
     if (form) {
-      handleSubmit(new Event("submit"));
+      handleSubmit(new Event('submit'));
     }
   };
 
@@ -102,6 +105,12 @@ const Signup = () => {
       age--;
     }
     return age;
+  };
+
+  const handleStepClick = (clickedStep: number) => {
+    if (clickedStep <= step()) {
+      setStep(clickedStep);
+    }
   };
 
   return (
@@ -121,8 +130,9 @@ const Signup = () => {
                 <ProgressStep
                   active={step() === index + 1}
                   completed={step() > index + 1}
+                  onClick={() => handleStepClick(index + 1)}
                 >
-                  {step() > index + 1 ? "" : index + 1}
+                  {step() > index + 1 ? '' : index + 1}
                 </ProgressStep>
               ))}
             </ProgressBar>
@@ -185,13 +195,9 @@ const Signup = () => {
               )}
               <ButtonGroup>
                 {step() > 1 && (
-                  <Button
-                    type="button"
-                    onClick={handlePrev}
-                    variant="secondary"
-                  >
+                  <BackLink href="#" onClick={handlePrev}>
                     戻る
-                  </Button>
+                  </BackLink>
                 )}
                 {step() < 8 && (
                   <Button
