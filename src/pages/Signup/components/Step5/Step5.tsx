@@ -1,7 +1,6 @@
-import { createSignal, createEffect } from 'solid-js';
-import { FormData } from '../../../../types/formTypes';
-import { FormGroup, Label, Input } from './Step5.styled';
-import { OptionalTag } from '../../Signup.styled';
+import { createSignal, createEffect } from "solid-js";
+import { FormData } from "../../../../types/formTypes";
+import { FormGroup, Label, Input, OptionalTag } from "../../Signup.styled";
 
 interface StepProps {
   formData: FormData;
@@ -14,14 +13,14 @@ const Step5 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
 
   const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    const value = target.value.replace(/\D/g, ''); // 数字以外を除去
+    const value = target.value.replace(/\D/g, ""); // 数字以外を除去
     if (value.length <= 8) {
       if (value.length === 4) {
         // 年を4桁入力したら自動的に月を入力
-        setBirthdate(value + '-');
+        setBirthdate(value + "-");
       } else if (value.length === 6) {
         // 月を2桁入力したら自動的に日を入力
-        setBirthdate(value.slice(0, 4) + '-' + value.slice(4, 6) + '-');
+        setBirthdate(value.slice(0, 4) + "-" + value.slice(4, 6) + "-");
       } else if (value.length === 8) {
         const formattedDate = `${value.slice(0, 4)}-${value.slice(
           4,

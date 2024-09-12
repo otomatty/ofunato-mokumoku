@@ -1,12 +1,12 @@
-import { Component } from 'solid-js';
-import { A, useNavigate } from '@solidjs/router';
+import { Component } from "solid-js";
+import { A, useNavigate } from "@solidjs/router";
 import {
   FullScreenNavWrapper,
   NavContent,
   CloseButton,
   ButtonContainer,
-} from './FullScreenNav.styled';
-import Button from '../Button/Button';
+} from "./FullScreenNav.styled";
+import Button from "../Button/Button";
 
 interface FullScreenNavProps {
   isOpen: boolean;
@@ -40,12 +40,12 @@ const FullScreenNav: Component<FullScreenNavProps> = (props) => {
         <ButtonContainer>
           <Button
             variant="secondary"
-            onClick={() => handleNavigation('/contact')}
+            onClick={() => handleNavigation("/contact")}
           >
             お問い合わせ
           </Button>
-          <Button onClick={() => handleNavigation('/signup')}>
-            参加を申し込む
+          <Button onClick={() => handleNavigation("/signup")}>
+            もくもく会に参加する
           </Button>
         </ButtonContainer>
       </NavContent>

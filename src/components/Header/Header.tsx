@@ -1,5 +1,5 @@
-import { Component, createSignal } from 'solid-js';
-import { A, useNavigate } from '@solidjs/router';
+import { Component, createSignal } from "solid-js";
+import { A, useNavigate } from "@solidjs/router";
 import {
   HeaderWrapper,
   HeaderInner,
@@ -7,15 +7,16 @@ import {
   Nav,
   HamburgerButton,
   ButtonContainer,
-} from './Header.styled';
-import FullScreenNav from '../FullScreenNav/FullScreenNav';
-import Button from '../Button/Button';
+} from "./Header.styled";
+import FullScreenNav from "../FullScreenNav/FullScreenNav";
+import Button from "../Button/Button";
 
 const Header: Component = () => {
-  const [isNavOpen, setIsNavOpen] = createSignal(false);
+  const [isFullScreenNavOpen, setIsFullScreenNavOpen] = createSignal(false);
   const navigate = useNavigate();
 
-  const toggleNav = () => setIsNavOpen(!isNavOpen());
+  const toggleFullScreenNav = () =>
+    setIsFullScreenNavOpen(!isFullScreenNavOpen());
 
   return (
     <>
@@ -27,44 +28,30 @@ const Header: Component = () => {
               <span>大船渡もくもく会</span>
             </A>
           </Logo>
-          <Nav isOpen={isNavOpen()}>
-            <A href="/schedule" onClick={() => setIsNavOpen(false)}>
-              スケジュール
-            </A>
-            <A href="/faq" onClick={() => setIsNavOpen(false)}>
-              よくある質問
-            </A>
-            <A href="/reports" onClick={() => setIsNavOpen(false)}>
-              イベントレポート
-            </A>
+          <Nav>
+            <A href="/schedule">スケジュール</A>
+            <A href="/faq">よくある質問</A>
+            <A href="/reports">イベントレポート</A>
             <ButtonContainer>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  navigate('/contact');
-                  setIsNavOpen(false);
-                }}
-              >
+              <Button variant="secondary" onClick={() => navigate("/contact")}>
                 お問い合わせ
               </Button>
-              <Button
-                onClick={() => {
-                  navigate('/signup');
-                  setIsNavOpen(false);
-                }}
-              >
-                参加を申し込む
+              <Button onClick={() => navigate("/signup")}>
+                もくもく会に参加する
               </Button>
             </ButtonContainer>
           </Nav>
-          <HamburgerButton onClick={toggleNav}>
+          <HamburgerButton onClick={toggleFullScreenNav}>
             <span></span>
             <span></span>
             <span></span>
           </HamburgerButton>
         </HeaderInner>
       </HeaderWrapper>
-      <FullScreenNav isOpen={isNavOpen()} onClose={() => setIsNavOpen(false)} />
+      <FullScreenNav
+        isOpen={isFullScreenNavOpen()}
+        onClose={() => setIsFullScreenNavOpen(false)}
+      />
     </>
   );
 };

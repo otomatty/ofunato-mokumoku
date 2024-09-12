@@ -1,7 +1,6 @@
-import { createSignal, createEffect } from 'solid-js';
-import { FormData } from '../../../../types/formTypes';
-import { FormGroup, Label, Input } from './Step3.styled';
-import { OptionalTag } from '../../Signup.styled';
+import { createSignal, createEffect } from "solid-js";
+import { FormData } from "../../../../types/formTypes";
+import { FormGroup, Label, Input, OptionalTag } from "../../Signup.styled";
 
 interface StepProps {
   formData: FormData;
@@ -19,14 +18,14 @@ const Step3 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   };
 
   createEffect(() => {
-    // 電話番号は任意項目なので、常に有効とする
+    // 任意項目なので、常に有効とする
     setIsStepValid(true);
   });
 
   return (
     <FormGroup>
       <Label for="phone">
-        電話番号<OptionalTag>任意</OptionalTag>
+        電話番号を入力してください<OptionalTag>任意</OptionalTag>
       </Label>
       <Input
         type="tel"

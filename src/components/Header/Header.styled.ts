@@ -1,6 +1,6 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const HeaderWrapper = styled('header')`
+export const HeaderWrapper = styled("header")`
   width: 100%;
   background-color: #fff;
   padding: 20px 0;
@@ -11,7 +11,7 @@ export const HeaderWrapper = styled('header')`
   z-index: 1000;
 `;
 
-export const HeaderInner = styled('div')`
+export const HeaderInner = styled("div")`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -20,7 +20,7 @@ export const HeaderInner = styled('div')`
   align-items: center;
 `;
 
-export const Logo = styled('div')`
+export const Logo = styled("div")`
   color: #333;
   margin: 0;
 
@@ -58,21 +58,12 @@ export const Logo = styled('div')`
   }
 `;
 
-export const Nav = styled('nav')<{ isOpen: boolean }>`
+export const Nav = styled("nav")`
   display: flex;
   align-items: center;
 
   @media (max-width: 768px) {
-    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
-    flex-direction: column;
-    position: fixed;
-    top: 100px; // ヘッダーの高さに応じて調整
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    z-index: 999;
+    display: none; // モバイル表示では常に非表示
   }
 
   a {
@@ -85,14 +76,10 @@ export const Nav = styled('nav')<{ isOpen: boolean }>`
     &:hover {
       color: #007bff;
     }
-
-    @media (max-width: 768px) {
-      margin: 10px 0;
-    }
   }
 `;
 
-export const ButtonContainer = styled('div')`
+export const ButtonContainer = styled("div")`
   display: flex;
   gap: 10px;
   margin-left: 20px;
@@ -104,7 +91,7 @@ export const ButtonContainer = styled('div')`
   }
 `;
 
-export const HamburgerButton = styled('button')`
+export const HamburgerButton = styled("button")`
   display: none;
   background: none;
   border: none;

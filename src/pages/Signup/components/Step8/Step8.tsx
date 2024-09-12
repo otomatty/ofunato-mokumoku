@@ -1,5 +1,5 @@
-import { createSignal, createEffect, For } from 'solid-js';
-import { FormData } from '../../../../types/formTypes';
+import { createSignal, createEffect, For } from "solid-js";
+import { FormData } from "../../../../types/formTypes";
 import {
   FormGroup,
   Label,
@@ -10,10 +10,10 @@ import {
   AccordionContent,
   AccordionInner,
   IconWrapper,
-} from './Step8.styled';
-import { OptionalTag } from '../../Signup.styled';
-import { themeData } from '../../../../data/themeData';
-import { FaSolidChevronDown } from 'solid-icons/fa';
+} from "./Step8.styled";
+import { OptionalTag } from "../../Signup.styled";
+import { themeData } from "../../../../data/themeData";
+import { FaSolidChevronDown } from "solid-icons/fa";
 
 interface StepProps {
   formData: FormData;
@@ -23,9 +23,9 @@ interface StepProps {
 
 const Step8 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   const [selectedThemes, setSelectedThemes] = createSignal<string[]>(
-    formData.theme.split(',').filter(Boolean)
+    formData.theme.split(",").filter(Boolean)
   );
-  const [otherTheme, setOtherTheme] = createSignal(formData.otherPurpose || '');
+  const [otherTheme, setOtherTheme] = createSignal(formData.otherPurpose || "");
   const [openCategories, setOpenCategories] = createSignal<string[]>([]);
 
   const handleThemeChange = (value: string) => {
@@ -47,7 +47,7 @@ const Step8 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   const updateFormData = () => {
     setFormData({
       ...formData,
-      theme: selectedThemes().join(','),
+      theme: selectedThemes().join(","),
       otherPurpose: otherTheme(),
     });
   };
@@ -61,7 +61,7 @@ const Step8 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
   };
 
   createEffect(() => {
-    setIsStepValid(true); // 常に有効にする（任意選択のため）
+    setIsStepValid(true); // 常に有効（任意項目）
   });
 
   return (
@@ -77,8 +77,8 @@ const Step8 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
               <IconWrapper
                 style={{
                   transform: openCategories().includes(category.category)
-                    ? 'rotate(180deg)'
-                    : 'rotate(0)',
+                    ? "rotate(180deg)"
+                    : "rotate(0)",
                 }}
               >
                 <FaSolidChevronDown />
@@ -94,8 +94,8 @@ const Step8 = ({ formData, setFormData, setIsStepValid }: StepProps) => {
                       <Card
                         class={
                           selectedThemes().includes(item.title)
-                            ? 'selected'
-                            : ''
+                            ? "selected"
+                            : ""
                         }
                         onClick={() => handleThemeChange(item.title)}
                       >

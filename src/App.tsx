@@ -1,21 +1,21 @@
-import { Component, JSX, createEffect, createSignal } from 'solid-js';
-import { Router, Route, RouteSectionProps } from '@solidjs/router';
+import { Component, JSX, createEffect, createSignal } from "solid-js";
+import { Router, Route, RouteSectionProps } from "@solidjs/router";
 
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
-import HomePage from './pages/Home/HomePage';
-import Schedule from './pages/Schedule/Schedule';
-import Signup from './pages/Signup/Signup';
-import LoginPage from './pages/Login/LoginPage';
-import MemberPage from './pages/Member/MemberPage';
-import NotFoundPage from './pages/Notfound/NotFoundPage';
-import Contact from './pages/Contact/Contact';
-import FAQ from './pages/FAQ/FAQ';
-import EventReport from './pages/EventReport/EventReport';
-import ReportDetail from './pages/ReportDetail/ReportDetail';
-
-import './App.css';
+import HomePage from "./pages/Home/HomePage";
+import Schedule from "./pages/Schedule/Schedule";
+import Signup from "./pages/Signup/Signup";
+import LoginPage from "./pages/Login/LoginPage";
+import MemberPage from "./pages/Member/MemberPage";
+import NotFoundPage from "./pages/Notfound/NotFoundPage";
+import Contact from "./pages/Contact/Contact";
+import FAQ from "./pages/FAQ/FAQ";
+import EventReport from "./pages/EventReport/EventReport";
+import ReportDetail from "./pages/ReportDetail/ReportDetail";
+import ThankYou from "./pages/ThankYou/ThankYou";
+import "./App.css";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -25,7 +25,7 @@ const Layout: Component<LayoutProps> = (props) => {
   const [headerHeight, setHeaderHeight] = createSignal(0);
 
   createEffect(() => {
-    const header = document.querySelector('header');
+    const header = document.querySelector("header");
     if (header) {
       setHeaderHeight(header.offsetHeight);
     }
@@ -34,7 +34,7 @@ const Layout: Component<LayoutProps> = (props) => {
   return (
     <>
       <Header />
-      <main style={{ 'margin-top': `${headerHeight()}px` }}>
+      <main style={{ "margin-top": `${headerHeight()}px` }}>
         {props.children}
       </main>
       <Footer />
@@ -61,6 +61,7 @@ const App: Component = () => {
       <Route path="/member" component={MemberPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="*" component={NotFoundPage} />
+      <Route path="/thank-you" component={ThankYou} />
     </Router>
   );
 };

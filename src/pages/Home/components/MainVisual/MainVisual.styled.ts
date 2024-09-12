@@ -1,6 +1,6 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const MainVisualWrapper = styled('div')`
+export const MainVisualWrapper = styled("div")`
   width: 100%;
   background-color: #fff;
   border-radius: 0.5rem;
@@ -12,7 +12,7 @@ export const MainVisualWrapper = styled('div')`
   }
 `;
 
-export const MainVisualContent = styled('div')`
+export const MainVisualContent = styled("div")`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -29,7 +29,7 @@ export const MainVisualContent = styled('div')`
   }
 `;
 
-export const MainVisualImage = styled('img')`
+export const MainVisualImage = styled("img")`
   max-width: 100%;
   height: auto;
   margin-bottom: 1rem;
@@ -41,7 +41,7 @@ export const MainVisualImage = styled('img')`
   }
 `;
 
-export const MainVisualDescription = styled('div')`
+export const MainVisualDescription = styled("div")`
   text-align: left;
   margin-bottom: 1rem;
   font-size: 1rem;
@@ -57,7 +57,7 @@ export const MainVisualDescription = styled('div')`
   }
 `;
 
-export const MainVisualTextContent = styled('div')`
+export const MainVisualTextContent = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,7 +68,7 @@ export const MainVisualTextContent = styled('div')`
   }
 `;
 
-export const MainVisualTitle = styled('h1')`
+export const MainVisualTitle = styled("h1")`
   font-size: 2rem;
   color: var(--color-text-accent);
   margin-bottom: 1.5rem;
@@ -78,9 +78,8 @@ export const MainVisualTitle = styled('h1')`
   }
 `;
 
-export const ButtonWrapper = styled('div')`
-  margin-top: 1rem;
-
+export const ButtonWrapper = styled("div")`
+  margin: 1rem 0;
   a {
     text-decoration: none;
   }
