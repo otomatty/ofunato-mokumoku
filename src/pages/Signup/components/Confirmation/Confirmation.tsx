@@ -60,6 +60,19 @@ const Confirmation: Component<ConfirmationProps> = ({
     }
   };
 
+  const getGenderLabel = (gender: string) => {
+    switch (gender) {
+      case "male":
+        return "男性";
+      case "female":
+        return "女性";
+      case "custom":
+        return formData.customGender || "未入力";
+      default:
+        return "回答しない";
+    }
+  };
+
   return (
     <ConfirmationWrapper>
       <ConfirmationTitle>確認画面</ConfirmationTitle>
@@ -79,11 +92,7 @@ const Confirmation: Component<ConfirmationProps> = ({
         </ConfirmationItem>
         <ConfirmationItem>
           <ItemLabel>性別:</ItemLabel>
-          <ItemValue>
-            {formData.gender === "custom"
-              ? formData.customGender || "未入力"
-              : formData.gender || "回答しない"}
-          </ItemValue>
+          <ItemValue>{getGenderLabel(formData.gender)}</ItemValue>
         </ConfirmationItem>
         <ConfirmationItem>
           <ItemLabel>生年月日:</ItemLabel>

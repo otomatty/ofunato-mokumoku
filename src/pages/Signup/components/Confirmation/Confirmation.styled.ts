@@ -3,7 +3,9 @@ import { styled } from "solid-styled-components";
 export const ConfirmationWrapper = styled("div")`
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem;
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 export const ConfirmationTitle = styled("h2")`
@@ -28,12 +30,16 @@ export const ConfirmationList = styled("ul")`
 
 export const ConfirmationItem = styled("li")`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 0.75rem 0;
   border-bottom: 1px solid #eee;
 
   &:last-child {
     border-bottom: none;
+  }
+  @media (min-width: 576px) {
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 

@@ -177,3 +177,9 @@ export const BackLink = styled("a")`
     opacity: 0.8;
   }
 `;
+
+export const Message = styled("p")`
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.5rem;
+`;
