@@ -48,9 +48,6 @@ const LearningThemes: Component = () => {
         >
           {(category) => (
             <AnimatedContainer>
-              <BackButton onClick={handleBackClick}>
-                ← カテゴリー一覧に戻る
-              </BackButton>
               <h2>{category().category}</h2>
               <ThemeList>
                 {category().themes.map((theme) => (
@@ -59,6 +56,9 @@ const LearningThemes: Component = () => {
                   </ThemeItem>
                 ))}
               </ThemeList>
+              <BackButton onClick={handleBackClick}>
+                ← カテゴリー一覧に戻る
+              </BackButton>
             </AnimatedContainer>
           )}
         </Show>

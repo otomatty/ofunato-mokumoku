@@ -1,6 +1,6 @@
 import { Component } from "solid-js";
 import { useParams } from "@solidjs/router";
-import { ReportDetailWrapper } from "./ReportDetail.styled";
+import { ReportDetailWrapper, ReportDetailInner } from "./ReportDetail.styled";
 import { eventReports } from "../../data/eventReportData";
 
 const ReportDetail: Component = () => {
@@ -13,9 +13,11 @@ const ReportDetail: Component = () => {
 
   return (
     <ReportDetailWrapper>
-      <h1>{report.title}</h1>
-      <p>{report.content}</p>
-      <a href="/reports">戻る</a>
+      <ReportDetailInner>
+        <h1>{report.title}</h1>
+        <p>{report.content}</p>
+        <a href="/reports">戻る</a>
+      </ReportDetailInner>
     </ReportDetailWrapper>
   );
 };

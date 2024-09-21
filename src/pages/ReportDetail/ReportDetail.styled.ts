@@ -1,8 +1,7 @@
 import { styled } from "solid-styled-components";
 
 export const ReportDetailWrapper = styled("div")`
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
   padding: 2rem;
   background-color: #fff;
   border-radius: 8px;
@@ -24,4 +23,9 @@ export const ReportDetailWrapper = styled("div")`
     color: #007bff;
     text-decoration: none;
   }
+`;
+
+export const ReportDetailInner = styled("div")`
+  max-width: 800px;
+  margin: 0 auto;
 `;

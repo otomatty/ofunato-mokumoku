@@ -27,6 +27,7 @@ export const CategoryCard = styled("div")`
   padding: 1rem;
   text-align: center;
   transition: transform 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-5px);
@@ -87,6 +88,7 @@ export const ThemeItem = styled("li")`
   font-size: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-2px);
@@ -100,18 +102,22 @@ export const ThemeItem = styled("li")`
 `;
 
 export const BackButton = styled("button")`
-  background-color: transparent;
+  background-color: #007bff;
   border: none;
-  color: #007bff;
+  border-radius: 8px;
+  color: #fff;
   cursor: pointer;
   font-size: 1rem;
-  padding: 0;
+  font-weight: bold;
+  padding: 1rem;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 
   &:hover {
-    text-decoration: underline;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 `;
 
