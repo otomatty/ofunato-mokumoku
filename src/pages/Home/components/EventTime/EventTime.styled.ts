@@ -1,12 +1,12 @@
-import { styled } from 'solid-styled-components';
+import { styled } from "solid-styled-components";
 
-export const EventTimeWrapper = styled('div')`
+export const EventTimeWrapper = styled("div")`
   height: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-export const EventList = styled('div')`
+export const EventList = styled("div")`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ export const EventList = styled('div')`
   }
 `;
 
-export const DayWrapper = styled('div')`
+export const DayWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -47,7 +47,7 @@ export const DayWrapper = styled('div')`
   width: 100%;
 `;
 
-export const DayStyled = styled('div')`
+export const DayStyled = styled("div")`
   padding: 1rem 0.2rem;
   box-sizing: border-box;
   height: 70%;
@@ -58,11 +58,11 @@ export const DayStyled = styled('div')`
   align-content: center;
 
   @media (min-width: 768px) {
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
   }
 `;
 
-export const HighlightedDayStyled = styled('div')`
+export const HighlightedDayStyled = styled("div")`
   padding: 1rem 0.5rem;
   box-sizing: border-box;
   background-color: var(--color-primary-main);
@@ -77,7 +77,7 @@ export const HighlightedDayStyled = styled('div')`
   }
 `;
 
-export const EventTitleStyled = styled('h3')`
+export const EventTitleStyled = styled("h3")`
   margin: 0;
   font-size: 1.2rem;
 
@@ -86,7 +86,7 @@ export const EventTitleStyled = styled('h3')`
   }
 `;
 
-export const EventTimeStyled = styled('p')`
+export const EventTimeStyled = styled("p")`
   margin: 0;
   font-size: 0.8rem;
   text-align: center;
