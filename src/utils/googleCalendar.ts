@@ -45,7 +45,16 @@ export async function fetchUpcomingEvents(): Promise<CalendarEvent[] | null> {
 
   try {
     const response = await fetch(url);
+
+    // デバッグ用コードを追加
+    console.log("Response status:", response.status);
+    console.log("Response headers:", response.headers);
+
     const data = await response.json();
+
+    // デバッグ用コードを追加
+    console.log("Response data:", data);
+
     if (data.items && data.items.length > 0) {
       cachedUpcomingEvents = data.items as CalendarEvent[];
       upcomingEventsCacheTimestamp = now;
@@ -54,7 +63,12 @@ export async function fetchUpcomingEvents(): Promise<CalendarEvent[] | null> {
       return null;
     }
   } catch (error) {
+    // エラーの詳細をログに出力
     console.error("Error fetching upcoming events:", error);
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+      console.error("Error stack:", error.stack);
+    }
     return null;
   }
 }
